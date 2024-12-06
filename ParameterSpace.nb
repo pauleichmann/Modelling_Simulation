@@ -1,0 +1,603 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     26809,        595]
+NotebookOptionsPosition[     26132,        576]
+NotebookOutlinePosition[     26528,        592]
+CellTagsIndexPosition[     26485,        589]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Add", " ", "fixed", " ", "point", " ", "plot", " ", "onto", " ", "the", 
+    " ", "2", "D", " ", "StreamPlots"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Module", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "vectorField", ",", "\[IndentingNewLine]", "plot3D", ",", 
+        "\[IndentingNewLine]", "plotSR", ",", "\[IndentingNewLine]", "plotSC",
+         ",", "\[IndentingNewLine]", "plotRC", ",", "\[IndentingNewLine]", 
+        "matrix", ",", "\[IndentingNewLine]", "combinedPlot", ",", 
+        "\[IndentingNewLine]", "gridLayout", ",", "\[IndentingNewLine]", 
+        "detMatrix", ",", "\[IndentingNewLine]", "trMatrix"}], "}"}], ",", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "3", "D", " ", "Vector", " ", "Field", " ", "based", " ", "on", " ", 
+        "current", " ", "parameters"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"vectorField", "=", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"\[Alpha]", " ", "S"}], "-", 
+           RowBox[{"\[Beta]", " ", "C"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"\[Gamma]", " ", "R"}], "-", 
+           RowBox[{"\[Delta]", " ", "S", " ", "C"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"\[Eta]", " ", "R", " ", "S"}], "-", 
+           RowBox[{"\[Lambda]", " ", "S"}]}]}], "\[IndentingNewLine]", 
+         "}"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Create", " ", "the", " ", "Stream", " ", "Plot"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"plot3D", "=", 
+        RowBox[{"StreamPlot3D", "[", "\[IndentingNewLine]", 
+         RowBox[{"vectorField", ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"R", ",", 
+            RowBox[{"-", "40"}], ",", "40"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"C", ",", 
+            RowBox[{"-", "40"}], ",", "40"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"S", ",", 
+            RowBox[{"-", "40"}], ",", "40"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"StreamPoints", "->", "Fine"}], ",", "\[IndentingNewLine]", 
+          
+          RowBox[{"StreamStyle", "->", 
+           RowBox[{"{", 
+            RowBox[{"Thin", ",", "Blue", ",", 
+             RowBox[{"Opacity", "[", "0.7", "]"}]}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AxesLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{"\"\<R\>\"", ",", "\"\<C\>\"", ",", "\"\<S\>\""}], 
+            "}"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"BoxRatios", "->", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PlotLabel", "->", "\"\<3D Stream Plot\>\""}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ImageSize", "->", "Large"}]}], "\[IndentingNewLine]", 
+         "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{
+         "2", "D", " ", "Stream", " ", "Plot", " ", "for", " ", "S", " ", 
+          "vs", " ", "R", " ", "with", " ", "C"}], "=", "0"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"plotSR", "=", 
+        RowBox[{"StreamPlot", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"\[Alpha]", " ", "S"}], ",", " ", 
+            RowBox[{"(*", 
+             RowBox[{
+             "C", " ", "term", " ", "of", " ", "the", " ", "differential", 
+              " ", "equation", " ", "is", " ", "set", " ", "to", " ", "0"}], 
+             "*)"}], "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"\[Eta]", " ", "R", " ", "S"}], "-", 
+             RowBox[{"\[Lambda]", " ", "S"}]}]}], "\[IndentingNewLine]", 
+           "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"R", ",", 
+            RowBox[{"-", "20"}], ",", "20"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"S", ",", 
+            RowBox[{"-", "20"}], ",", "20"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"StreamPoints", "->", "Fine"}], ",", "\[IndentingNewLine]", 
+          
+          RowBox[{"StreamStyle", "->", 
+           RowBox[{"{", 
+            RowBox[{"Thick", ",", "Green", ",", 
+             RowBox[{"Opacity", "[", "0.7", "]"}]}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Frame", "->", "True"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"FrameLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{"\"\<R\>\"", ",", "\"\<S\>\""}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PlotLabel", "->", "\"\<C = 0\>\""}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ImageSize", "->", "Medium"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"AspectRatio", "->", "1"}]}], "\[IndentingNewLine]", 
+         "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{
+         "2", "D", " ", "Stream", " ", "Plot", " ", "for", " ", "S", " ", 
+          "vs", " ", "C", " ", "with", " ", "R"}], "=", "0"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"plotSC", "=", 
+        RowBox[{"StreamPlot", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"\[Alpha]", " ", "S"}], "-", 
+             RowBox[{"\[Beta]", " ", "C"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"-", "\[Lambda]"}], " ", "S"}]}], "  ", 
+           RowBox[{"(*", 
+            RowBox[{
+            "R", " ", "term", " ", "of", " ", "the", " ", "differential", " ",
+              "equation", " ", "is", " ", "set", " ", "to", " ", "0"}], 
+            "*)"}], "\[IndentingNewLine]", "}"}], ",", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"C", ",", 
+            RowBox[{"-", "20"}], ",", "20"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"S", ",", 
+            RowBox[{"-", "20"}], ",", "20"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"StreamPoints", "->", "Fine"}], ",", "\[IndentingNewLine]", 
+          
+          RowBox[{"StreamStyle", "->", 
+           RowBox[{"{", 
+            RowBox[{"Thick", ",", "Green", ",", 
+             RowBox[{"Opacity", "[", "0.7", "]"}]}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Frame", "->", "True"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"FrameLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{"\"\<C\>\"", ",", "\"\<S\>\""}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PlotLabel", "->", "\"\<R = 0\>\""}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ImageSize", "->", "Medium"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"AspectRatio", "->", "1"}]}], "\[IndentingNewLine]", 
+         "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{
+         "2", "D", " ", "Stream", " ", "Plot", " ", "for", " ", "R", " ", 
+          "vs", " ", "C", " ", "with", " ", "S"}], "=", "0"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"plotRC", "=", 
+        RowBox[{"StreamPlot", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "\[Beta]"}], " ", "C"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"\[Gamma]", " ", "R"}]}], "\[IndentingNewLine]", "}"}], 
+          ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"C", ",", 
+            RowBox[{"-", "20"}], ",", "20"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"R", ",", 
+            RowBox[{"-", "20"}], ",", "20"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"StreamPoints", "->", "Fine"}], ",", "\[IndentingNewLine]", 
+          
+          RowBox[{"StreamStyle", "->", 
+           RowBox[{"{", 
+            RowBox[{"Thick", ",", "Green", ",", 
+             RowBox[{"Opacity", "[", "0.7", "]"}]}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Frame", "->", "True"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"FrameLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{"\"\<C\>\"", ",", "\"\<R\>\""}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PlotLabel", "->", "\"\<S = 0\>\""}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ImageSize", "->", "Medium"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"AspectRatio", "->", "1"}]}], "\[IndentingNewLine]", 
+         "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Define", " ", "the", " ", "matrix"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"matrix", "=", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{"-", "\[Beta]"}], ",", "\[Alpha]"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"\[Gamma]", ",", 
+            RowBox[{
+             RowBox[{"-", "S"}], " ", "\[Delta]"}], ",", 
+            RowBox[{
+             RowBox[{"-", "C"}], " ", "\[Delta]"}]}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"S", " ", "\[Eta]"}], ",", "0", ",", 
+            RowBox[{
+             RowBox[{"R", " ", "\[Eta]"}], "-", "\[Lambda]"}]}], "}"}]}], 
+         "\[IndentingNewLine]", "}"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Evaluate", " ", "determinant", " ", "and", " ", "trace", " ", "with",
+          " ", "numerical", " ", "parameter", " ", "values"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"detMatrix", "=", 
+        RowBox[{"Det", "[", "matrix", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"trMatrix", "=", 
+        RowBox[{"Tr", "[", "matrix", "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Combined", " ", 
+         RowBox[{"plot", ":", 
+          RowBox[{
+          "Parameter", " ", "space", " ", "and", " ", "point", " ", 
+           "plot"}]}]}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"combinedPlot", "=", 
+        RowBox[{"Show", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"ParametricPlot", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"d", ",", "0"}], "}"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "t"}], "}"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"t", "^", "2"}], "/", "4"}], ",", "t"}], "}"}]}], 
+             "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"d", ",", 
+              RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", 
+              RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"ImageSize", "->", "Medium"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"AspectRatio", "->", "1"}]}], "\[IndentingNewLine]", 
+           "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"ListPlot", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{"detMatrix", ",", "trMatrix"}], "}"}], 
+             "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"PlotStyle", "->", 
+             RowBox[{"PointSize", "[", "Medium", "]"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}]}], " ", 
+           RowBox[{"(*", 
+            RowBox[{"Point", " ", "visibility"}], "*)"}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Arrange", " ", "all", " ", "plots", " ", "in", " ", "a", " ", "grid",
+          " ", "layout"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"gridLayout", "=", 
+        RowBox[{"Grid", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"combinedPlot", ",", "plotSR"}], "}"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"plotSC", ",", "plotRC"}], "}"}]}], 
+           "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Spacings", "->", 
+           RowBox[{"{", 
+            RowBox[{"2", ",", "2"}], "}"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Alignment", "->", "Center"}]}], "\[IndentingNewLine]", 
+         "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Display", " ", "the", " ", "grid", " ", "of", " ", "plots"}],
+         "*)"}], "\[IndentingNewLine]", "gridLayout"}]}], 
+     "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{"Define", " ", "the", " ", "Manipulate", " ", "controls"}], 
+     "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Alpha]", ",", "0.01"}], "}"}], ",", "0", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Beta]", ",", "0.05"}], "}"}], ",", "0", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Gamma]", ",", "0.02"}], "}"}], ",", "0", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Delta]", ",", "0.03"}], "}"}], ",", "0", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Eta]", ",", "0.04"}], "}"}], ",", "0", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Lambda]", ",", "0.01"}], "}"}], ",", "0", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"R", ",", "0.25"}], "}"}], ",", 
+      RowBox[{"-", "10"}], ",", "10", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"C", ",", 
+        FractionBox[
+         SqrtBox["30"], "30"]}], "}"}], ",", 
+      RowBox[{"-", "10"}], ",", "10", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"S", ",", 
+        FractionBox[
+         SqrtBox["5"], "2"]}], "}"}], ",", 
+      RowBox[{"-", "10"}], ",", "10", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"ControlPlacement", "->", "Top"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.941891105372375*^9, 3.941891107402124*^9}, 
+   3.941891151398535*^9, {3.941892411285778*^9, 3.941892467237678*^9}, {
+   3.9418925155499773`*^9, 3.94189279111298*^9}, {3.9418928421805143`*^9, 
+   3.9418929560969067`*^9}, {3.9418942016887627`*^9, 3.94189420232893*^9}, {
+   3.9418942420337753`*^9, 3.941894247505679*^9}, {3.941894311550461*^9, 
+   3.941894313459259*^9}, {3.9418943452432947`*^9, 3.941894405280755*^9}, {
+   3.94189573294038*^9, 3.941895755595193*^9}, 3.942250050851069*^9, {
+   3.942250111130864*^9, 3.942250112429513*^9}, {3.942250163936266*^9, 
+   3.942250175058401*^9}},
+ CellLabel->
+  "In[828]:=",ExpressionUUID->"ec861172-34ba-41b8-a9f6-884138e77723"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{C$$ = 30^Rational[-1, 2], $CellContext`R$$ = 
+    0.25, $CellContext`S$$ = Rational[1, 2] 
+    5^Rational[1, 2], $CellContext`\[Alpha]$$ = 0.01, $CellContext`\[Beta]$$ =
+     0.5, $CellContext`\[Gamma]$$ = 0.2, $CellContext`\[Delta]$$ = 
+    0.03, $CellContext`\[Eta]$$ = 0.04, $CellContext`\[Lambda]$$ = 0.882, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], 0.01}, 0, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`\[Beta]$$], 0.05}, 0, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`\[Gamma]$$], 0.02}, 0, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`\[Delta]$$], 0.03}, 0, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`\[Eta]$$], 0.04}, 0, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`\[Lambda]$$], 0.01}, 0, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`R$$], 0.25}, -10, 10, ControlType -> Manipulator}, {{
+      
+       Hold[C$$], 30^Rational[-1, 2]}, -10, 10, ControlType -> Manipulator}, {{
+       Hold[$CellContext`S$$], Rational[1, 2] 5^Rational[1, 2]}, -10, 10, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    746., {377.28648546006946`, 383.01841905381946`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {
+       C$$ = 30^Rational[-1, 2], $CellContext`R$$ = 0.25, $CellContext`S$$ = 
+        Rational[1, 2] 5^Rational[1, 2], $CellContext`\[Alpha]$$ = 
+        0.01, $CellContext`\[Beta]$$ = 0.05, $CellContext`\[Gamma]$$ = 
+        0.02, $CellContext`\[Delta]$$ = 0.03, $CellContext`\[Eta]$$ = 
+        0.04, $CellContext`\[Lambda]$$ = 0.01}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`vectorField$, $CellContext`plot3D$, \
+$CellContext`plotSR$, $CellContext`plotSC$, $CellContext`plotRC$, \
+$CellContext`matrix$, $CellContext`combinedPlot$, $CellContext`gridLayout$, \
+$CellContext`detMatrix$, $CellContext`trMatrix$}, $CellContext`vectorField$ = \
+{$CellContext`\[Alpha]$$ $CellContext`S$$ - $CellContext`\[Beta]$$ 
+           C$$, $CellContext`\[Gamma]$$ $CellContext`R$$ - $CellContext`\
+\[Delta]$$ $CellContext`S$$ 
+           C$$, $CellContext`\[Eta]$$ $CellContext`R$$ $CellContext`S$$ - \
+$CellContext`\[Lambda]$$ $CellContext`S$$}; $CellContext`plot3D$ = 
+         StreamPlot3D[$CellContext`vectorField$, {$CellContext`R$$, -40, 
+            40}, {C$$, -40, 40}, {$CellContext`S$$, -40, 40}, StreamPoints -> 
+           Fine, StreamStyle -> {Thin, Blue, 
+             Opacity[0.7]}, AxesLabel -> {"R", "C", "S"}, 
+           BoxRatios -> {1, 1, 1}, PlotLabel -> "3D Stream Plot", ImageSize -> 
+           Large]; $CellContext`plotSR$ = 
+         StreamPlot[{$CellContext`\[Alpha]$$ $CellContext`S$$, $CellContext`\
+\[Eta]$$ $CellContext`R$$ $CellContext`S$$ - $CellContext`\[Lambda]$$ \
+$CellContext`S$$}, {$CellContext`R$$, -20, 20}, {$CellContext`S$$, -20, 20}, 
+           StreamPoints -> Fine, StreamStyle -> {Thick, Green, 
+             Opacity[0.7]}, Frame -> True, FrameLabel -> {"R", "S"}, 
+           PlotLabel -> "C = 0", ImageSize -> Medium, AspectRatio -> 
+           1]; $CellContext`plotSC$ = 
+         StreamPlot[{$CellContext`\[Alpha]$$ $CellContext`S$$ - $CellContext`\
+\[Beta]$$ C$$, (-$CellContext`\[Lambda]$$) $CellContext`S$$}, {
+           C$$, -20, 20}, {$CellContext`S$$, -20, 20}, StreamPoints -> Fine, 
+           StreamStyle -> {Thick, Green, 
+             Opacity[0.7]}, Frame -> True, FrameLabel -> {"C", "S"}, 
+           PlotLabel -> "R = 0", ImageSize -> Medium, AspectRatio -> 
+           1]; $CellContext`plotRC$ = 
+         StreamPlot[{(-$CellContext`\[Beta]$$) 
+            C$$, $CellContext`\[Gamma]$$ $CellContext`R$$}, {
+           C$$, -20, 20}, {$CellContext`R$$, -20, 20}, StreamPoints -> Fine, 
+           StreamStyle -> {Thick, Green, 
+             Opacity[0.7]}, Frame -> True, FrameLabel -> {"C", "R"}, 
+           PlotLabel -> "S = 0", ImageSize -> Medium, AspectRatio -> 
+           1]; $CellContext`matrix$ = {{
+           0, -$CellContext`\[Beta]$$, $CellContext`\[Alpha]$$}, \
+{$CellContext`\[Gamma]$$, (-$CellContext`S$$) $CellContext`\[Delta]$$, (-
+             C$$) $CellContext`\[Delta]$$}, {$CellContext`S$$ $CellContext`\
+\[Eta]$$, 
+            0, $CellContext`R$$ $CellContext`\[Eta]$$ - \
+$CellContext`\[Lambda]$$}}; $CellContext`detMatrix$ = 
+         Det[$CellContext`matrix$]; $CellContext`trMatrix$ = 
+         Tr[$CellContext`matrix$]; $CellContext`combinedPlot$ = Show[
+           
+           ParametricPlot[{{$CellContext`d, 0}, {
+             0, $CellContext`t}, {$CellContext`t^2/
+              4, $CellContext`t}}, {$CellContext`d, -10, 
+             10}, {$CellContext`t, -10, 10}, 
+            PlotRange -> {{-10, 10}, {-10, 10}}, ImageSize -> Medium, 
+            AspectRatio -> 1], 
+           
+           ListPlot[{{$CellContext`detMatrix$, $CellContext`trMatrix$}}, 
+            PlotStyle -> PointSize[Medium], 
+            PlotRange -> {{-10, 10}, {-10, 10}}]]; $CellContext`gridLayout$ = 
+         Grid[{{$CellContext`combinedPlot$, $CellContext`plotSR$}, \
+{$CellContext`plotSC$, $CellContext`plotRC$}}, Spacings -> {2, 2}, Alignment -> 
+           Center]; $CellContext`gridLayout$], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 0.01}, 0, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Beta]$$, 0.05}, 0, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Gamma]$$, 0.02}, 0, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Delta]$$, 0.03}, 0, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Eta]$$, 0.04}, 0, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Lambda]$$, 0.01}, 0, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`R$$, 0.25}, -10, 10, Appearance -> 
+         "Labeled"}, {{C$$, 30^Rational[-1, 2]}, -10, 10, Appearance -> 
+         "Labeled"}, {{$CellContext`S$$, Rational[1, 2] 
+          5^Rational[1, 2]}, -10, 10, Appearance -> "Labeled"}}, 
+      "Options" :> {ControlPlacement -> Top}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      789.0999999999999, {565.6061021200883, 571.3380357138383}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.941895408084374*^9, 3.94189576764546*^9, 3.9422500338374147`*^9, 
+   3.942250074519945*^9, {3.942250177030861*^9, 3.942250223104938*^9}},
+ CellLabel->
+  "Out[828]=",ExpressionUUID->"7aebe2e7-ec5a-425b-a178-5f812a2ba9d1"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.941895401411148*^9, 
+  3.941895403282144*^9}},ExpressionUUID->"c49f620a-6c1a-43f1-8bd7-\
+3f03a3e8c178"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.941894567108873*^9, 3.9418945721170273`*^9}, {
+  3.941895395682146*^9, 
+  3.94189539777582*^9}},ExpressionUUID->"62f42115-1bd5-4a1d-959d-\
+3179749426f2"]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+FrontEndVersion->"14.1 for Mac OS X ARM (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"719480fe-b726-4e95-89d1-859fa3a2d445"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 17735, 408, 3092, "Input",ExpressionUUID->"ec861172-34ba-41b8-a9f6-884138e77723"],
+Cell[18314, 432, 7442, 130, 1172, "Output",ExpressionUUID->"7aebe2e7-ec5a-425b-a178-5f812a2ba9d1"]
+}, Open  ]],
+Cell[25771, 565, 152, 3, 29, "Input",ExpressionUUID->"c49f620a-6c1a-43f1-8bd7-3f03a3e8c178"],
+Cell[25926, 570, 202, 4, 29, "Input",ExpressionUUID->"62f42115-1bd5-4a1d-959d-3179749426f2"]
+}
+]
+*)
+
